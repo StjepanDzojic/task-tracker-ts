@@ -37,10 +37,17 @@ const App: React.FC = () => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const toggleReminder = (id: number) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      )
+    );
+  };
   return (
     <div className="container">
         <Header title="Task tracker"/>
-        <Tasks tasks={tasks} onDelete={deleteTask}/>
+        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
     </div>
   );
 }
