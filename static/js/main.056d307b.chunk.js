@@ -1,2 +1,0 @@
-(this["webpackJsonptask-tracker-ts"]=this["webpackJsonptask-tracker-ts"]||[]).push([[0],{10:function(t,e,c){"use strict";c.r(e);var n=c(0),r=c.n(n),s=c(3),a=c.n(s),o=(c(8),c(1));var i=function(){return Object(o.jsx)("div",{className:"App",children:"hellooo"})};a.a.render(Object(o.jsx)(r.a.StrictMode,{children:Object(o.jsx)(i,{})}),document.getElementById("root"))},8:function(t,e,c){}},[[10,1,2]]]);
-//# sourceMappingURL=main.056d307b.chunk.js.map
