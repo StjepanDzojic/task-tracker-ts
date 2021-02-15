@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
-import { Identifier } from 'typescript';
-import AddTask from './components/AddTask';
-import Header from './components/Header';
-import { Tasks } from './components/Tasks';
+import React, { useState } from "react";
+import { Identifier } from "typescript";
+import AddTask from "./components/AddTask";
+import Header from "./components/Header";
+import { Tasks } from "./components/Tasks";
 
 declare global {
-  interface TaskInfo{
+  interface TaskInfo {
     id: number;
-    text: string; 
+    text: string;
     day: string;
     reminder: boolean;
   }
 }
 const App: React.FC = () => {
+  const [showAddTask, setShowAddTask] = useState<boolean>(true);
   const [tasks, setTasks] = useState<TaskInfo[]>([
     {
       id: 1,
@@ -34,7 +35,7 @@ const App: React.FC = () => {
     },
   ]);
 
-  const addTask = (task: {text: string, day: string, reminder: boolean} ) => {
+  const addTask = (task: { text: string; day: string; reminder: boolean }) => {
     const id = Math.floor(Math.random() * 10000) + 1;
     const newTask = { id, ...task };
     setTasks([...tasks, newTask]);
@@ -53,11 +54,15 @@ const App: React.FC = () => {
   };
   return (
     <div className="container">
-        <Header title="Task tracker"/>
-        <AddTask onAdd={addTask}/>
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
+      <Header
+        title="Task tracker"
+        onShow={() => setShowAddTask(!showAddTask)}
+        showAdd={showAddTask}
+      />
+      {showAddTask && <AddTask onAdd={addTask} />}
+      <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
     </div>
   );
-}
+};
 
 export default App;
