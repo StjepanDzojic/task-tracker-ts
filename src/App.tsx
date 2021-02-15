@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Identifier } from 'typescript';
+import AddTask from './components/AddTask';
 import Header from './components/Header';
 import { Tasks } from './components/Tasks';
 
@@ -33,6 +34,12 @@ const App: React.FC = () => {
     },
   ]);
 
+  const addTask = (task: {text: string, day: string, reminder: boolean} ) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask]);
+  };
+
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -47,6 +54,7 @@ const App: React.FC = () => {
   return (
     <div className="container">
         <Header title="Task tracker"/>
+        <AddTask onAdd={addTask}/>
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
     </div>
   );
