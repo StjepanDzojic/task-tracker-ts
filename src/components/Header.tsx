@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
+import Button from "./Button";
 
-interface Props{
-    title: string;
+interface Props {
+  title: string;
 }
 
-const Header: React.FC<Props> = ({
-    title
-}) => {
-    return (
-        <header className="header">
-            <h1>{title}</h1>
-        </header>
-    )
-}
+export const Header: React.FC<Props> = ({ title }) => {
+  return (
+    <header className="header">
+      <h1>{title}</h1>
+      <Button text="Show" />
+    </header>
+  );
+};
 
-export default Header
+export default Header;

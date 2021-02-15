@@ -1,10 +1,12 @@
 import React from 'react'
 
-const Button: React.FC = () => {
+interface Props{
+    text: string;
+}
+
+export const Button: React.FC<Props> = ({ text }) => {
     return (
-        <button>
-            
-        </button>
+    <button className="btn" >{text}</button>
     )
 }
 
