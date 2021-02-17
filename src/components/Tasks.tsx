@@ -1,13 +1,10 @@
 import React from "react";
 import { Task } from "./Task";
+import {TaskInfo} from "../Models/Types/TaskInfo"
+import {TasksProps} from "../Models/Interfaces/TasksProps"
 
-interface Props {
-  tasks: TaskInfo[];
-  onDelete: (id: number) => void;
-  onToggle: (id: number) => void;
-}
 
-export const Tasks: React.FC<Props> = ({ tasks, onDelete, onToggle }) => {
+export const Tasks: React.FC<TasksProps> = ({ tasks, onDelete, onToggle }) => {
   return (
     <div>
       {tasks.map((task) => (

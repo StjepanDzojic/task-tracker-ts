@@ -1,12 +1,7 @@
 import React, { HtmlHTMLAttributes } from 'react'
+import { DeleteButtonProps } from '../Models/Interfaces/DeleteButtonProps'
 
-
-interface Props{
-    task: TaskInfo;
-    onDelete: ( id: number) => void;
-}
-
-const DeleteButton: React.FC<Props> = ({ task, onDelete }) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({ task, onDelete }) => {
     return (
         <button className="btn-delete" onClick={()=> onDelete(task.id)} >
             Delete

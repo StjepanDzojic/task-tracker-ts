@@ -1,11 +1,7 @@
 import React from 'react'
+import { ReminderButtonProps } from '../Models/Interfaces/ReminderButtonProps'
 
-interface Props{
-    task: TaskInfo;
-    onToggle: (id: number) => void;
-}
-
-const ReminderButton: React.FC<Props> = ({ task, onToggle}) => {
+const ReminderButton: React.FC<ReminderButtonProps> = ({ task, onToggle}) => {
     return (
         <button className="btn-reminder" onClick={() => onToggle(task.id)}>Set Reminder</button>
     )

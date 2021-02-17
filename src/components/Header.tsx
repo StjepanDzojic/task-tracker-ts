@@ -1,13 +1,8 @@
 import React from "react";
+import { HeaderProps } from "../Models/Interfaces/HeaderProps";
 import Button from "./Button";
 
-interface Props {
-  title: string;
-  onShow: () => void;
-  showAdd: boolean;
-}
-
-export const Header: React.FC<Props> = ({ title, onShow, showAdd}) => {
+export const Header: React.FC<HeaderProps> = ({ title, onShow, showAdd}) => {
   return (
     <header className="header">
       <h1>{title}</h1>

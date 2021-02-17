@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import { Identifier } from "typescript";
 import AddTask from "./components/AddTask";
 import Header from "./components/Header";
 import { Tasks } from "./components/Tasks";
+import { Task } from "./Models/Types/Task";
+import { TaskInfo } from "./Models/Types/TaskInfo";
 
-declare global {
-  interface TaskInfo {
-    id: number;
-    text: string | undefined;
-    day: string |  undefined;
-    reminder: boolean;
-  }
-}
 const App: React.FC = () => {
   const [showAddTask, setShowAddTask] = useState<boolean>(true);
   const [tasks, setTasks] = useState<TaskInfo[]>([
@@ -24,18 +17,18 @@ const App: React.FC = () => {
     {
       id: 3,
       text: "Shopping",
-      day: "Feb 7th",
+      day: "May 7th",
       reminder: false,
     },
     {
       id: 2,
       text: "Meeting",
-      day: "Feb 6th",
+      day: "July 6th",
       reminder: true,
     },
   ]);
 
-  const addTask = (task: { text: string | undefined; day: string | undefined; reminder: boolean }) => {
+  const addTask = (task: Task) => {
     const id = Math.floor(Math.random() * 10000) + 1;
     const newTask = { id, ...task };
     setTasks([...tasks, newTask]);

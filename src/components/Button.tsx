@@ -1,11 +1,7 @@
 import React from "react";
+import { ButtonProps } from "../Models/Interfaces/ButtonProps";
 
-interface Props {
-  text: string;
-  onShow: () => void;
-}
-
-export const Button: React.FC<Props> = ({ text, onShow }) => {
+export const Button: React.FC<ButtonProps> = ({ text, onShow }) => {
   return <button className="btn" onClick={onShow}>{text}</button>;
 };
 
