@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 interface Props{
-    onAdd: (task: {text: string, day: string, reminder: boolean} ) => void;
+    onAdd: (task: {text: string | undefined, day: string | undefined, reminder: boolean} ) => void;
 }
 
 const AddTask: React.FC<Props> = ({ onAdd }) => {
-  const [text, setText] = useState<string>("");
-  const [day, setDay] = useState<string>("");
+  const [text, setText] = useState<string | undefined>(undefined);
+  const [day, setDay] = useState<string | undefined>(undefined);
   const [reminder, setReminder] = useState<boolean>(false);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -19,8 +19,8 @@ const AddTask: React.FC<Props> = ({ onAdd }) => {
 
       onAdd({text, day, reminder});
 
-      setText("");
-      setDay("");
+      setText(undefined);
+      setDay(undefined);
       setReminder(false);
 
   };

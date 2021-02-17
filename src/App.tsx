@@ -7,8 +7,8 @@ import { Tasks } from "./components/Tasks";
 declare global {
   interface TaskInfo {
     id: number;
-    text: string;
-    day: string;
+    text: string | undefined;
+    day: string |  undefined;
     reminder: boolean;
   }
 }
@@ -35,7 +35,7 @@ const App: React.FC = () => {
     },
   ]);
 
-  const addTask = (task: { text: string; day: string; reminder: boolean }) => {
+  const addTask = (task: { text: string | undefined; day: string | undefined; reminder: boolean }) => {
     const id = Math.floor(Math.random() * 10000) + 1;
     const newTask = { id, ...task };
     setTasks([...tasks, newTask]);
