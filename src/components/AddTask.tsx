@@ -5,18 +5,32 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
   const [text, setText] = useState<string | undefined>(undefined);
   const [day, setDay] = useState<string | undefined>(undefined);
   const [reminder, setReminder] = useState<boolean>(false);
+  const [errorText, setErrorText] = useState<string | undefined>(undefined);
+  const [errorDay, setErrorDay] = useState<string | undefined>(undefined);
+  const [errorLength, setErrorLength] = useState<string | undefined>(undefined);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!text || !day) {
-      alert("All the empty spaces must be filled out, please fill them out!");
+    if (!text) {
+      setErrorText("Task can't be empty!");
       return;
+    } else {
+      setErrorText(undefined);
+    }
+
+    if (!day) {
+      setErrorDay("Day can't be empty!");
+      return;
+    } else {
+      setErrorDay(undefined);
     }
 
     if (text.length < 10) {
-      alert("The task must contain at least 10 characters!");
+      setErrorLength("Task must contain 10 characters!");
       return;
+    } else {
+      setErrorLength(undefined);
     }
 
     onAdd({ text, day, reminder });
@@ -36,6 +50,8 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
+        <small>{errorText}</small>
+        <small>{errorLength}</small>
       </div>
       <div className="form-control">
         <label>Day</label>
@@ -45,6 +61,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
           value={day}
           onChange={(e) => setDay(e.target.value)}
         />
+        <small>{errorDay}</small>
       </div>
       <div className="form-control form-control-check">
         <label>Set Reminder</label>

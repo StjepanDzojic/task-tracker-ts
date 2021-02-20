@@ -134,3 +134,8 @@ body {
   flex: 2;
   height: 20px;
 }
+
+.form-control small {
+  color: #ff0000;
+  position: absolute;
+}
