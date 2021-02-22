@@ -24,20 +24,19 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
   
     if(!text){
       setErrorText("Task can't be empty");
-    }
+    } else if (text.length < 10) {
+      setErrorLength("Task must contain 10 characters!");
+    };
     
     if (!day) {
       setErrorDay("Day can't be empty!");
     };
 
-    if (!text || !day) {
+    if (!text || !day || text.length < 10) {
       return;
     } 
     
-    if (text.length < 10) {
-      setErrorLength("Task must contain 10 characters!");
-      return;
-    };
+  
 
     onAdd({ text, day, reminder });
 
