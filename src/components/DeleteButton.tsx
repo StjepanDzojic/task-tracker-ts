@@ -3,7 +3,7 @@ import { DeleteButtonProps } from "../Models/Interfaces/DeleteButtonProps";
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({ task, onDelete }) => {
   return (
-    <button className="btn-delete" onClick={() => onDelete(task.id)}>
+    <button className="btn-delete" onClick={() => onDelete(task)}>
       Delete
     </button>
   );

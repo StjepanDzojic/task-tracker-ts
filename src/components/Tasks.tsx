@@ -1,6 +1,5 @@
 import React from "react";
 import { Task } from "./Task";
-import { TaskInfo } from "../Models/Types/TaskInfo";
 import { TasksProps } from "../Models/Interfaces/TasksProps";
 
 export const Tasks: React.FC<TasksProps> = ({ tasks, onDelete, onToggle }) => {

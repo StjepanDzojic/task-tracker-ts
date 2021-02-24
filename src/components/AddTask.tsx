@@ -21,22 +21,19 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-  
-    if(!text){
+    if (!text) {
       setErrorText("Task can't be empty");
     } else if (text.length < 10) {
       setErrorLength("Task must contain 10 characters!");
-    };
-    
+    }
+
     if (!day) {
       setErrorDay("Day can't be empty!");
-    };
+    }
 
     if (!text || !day || text.length < 10) {
       return;
-    } 
-    
-  
+    }
 
     onAdd({ text, day, reminder });
 
