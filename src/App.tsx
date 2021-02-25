@@ -5,51 +5,53 @@ import { Tasks } from "./components/Tasks";
 import { Task } from "./Models/Types/Task";
 import { TaskInfo } from "./Models/Types/TaskInfo";
 import firebase from "./firebase";
+const ref = firebase.firestore().collection("firebaseTasks");
 
 const App: React.FC = () => {
   const [showAddTask, setShowAddTask] = useState<boolean>(true);
   const [tasks, setTasks] = useState<any[]>([]);
-  const ref = firebase.firestore().collection("firebaseTasks");
 
-  const getTasks = () => {
-    ref.get().then((item) => {
-      const items = item.docs.map((doc) => doc.data());
-      setTasks(items);
+  useEffect(() => {
+    const getTasks = () => {
+      ref.onSnapshot((querySnapshot) => {
+        const items: React.SetStateAction<any[]> = [];
+        querySnapshot.forEach((doc) => {
+          let id = doc.id;
+          let appObj = { ...doc.data(), id: id };
+          items.push(appObj);
+        });
+
+        setTasks(items);
+      });
+    };
+    console.log("da");
+    getTasks();
+  }, []);
+
+  const addTask = (task: Task) => {
+    ref.add(task).catch((error) => {
+      console.error(error);
     });
   };
 
-  useEffect(() => {
-    getTasks();
-  }, [tasks]);
-
-  const addTask = (task: Task) => {
-    // const id = Math.floor(Math.random() * 10000) + 1;
-    const id = Date.now()
-    const newTask = { id, ...task };
-
-    ref
-      .doc(Date.now().toString())
-      .set(newTask)
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   const deleteTask = (task: TaskInfo) => {
-    ref
-      .doc(task.text)
-      .delete()
-      .catch((error) => {
-        console.error(error);
-      });
+    setTasks(
+      tasks.map((item) =>
+        item.id === task.id ? ref.doc(task.id.toString()).delete() : item
+      )
+    );
   };
 
   const toggleReminder = (task: TaskInfo) => {
     setTasks(
       tasks.map((item) =>
-        item.id === task.id ? { ...item, reminder: !item.reminder } : item
+        item.id === task.id
+          ? ref
+              .doc(task.id.toString())
+              .update({ ...item, reminder: !item.reminder })
+          : item
       )
-    )
+    );
   };
 
   return (

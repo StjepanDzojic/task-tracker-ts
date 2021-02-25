@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes } from "react";
+import React from "react";
 import { DeleteButtonProps } from "../Models/Interfaces/DeleteButtonProps";
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({ task, onDelete }) => {

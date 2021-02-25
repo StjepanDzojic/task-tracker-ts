@@ -31,7 +31,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
       setErrorDay("Day can't be empty!");
     }
 
-    if (!text || !day || text.length < 10) {
+    if (!text || !day || text.length < 5) {
       return;
     }
 
