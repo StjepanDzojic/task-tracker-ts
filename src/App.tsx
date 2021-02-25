@@ -24,7 +24,6 @@ const App: React.FC = () => {
         setTasks(items);
       });
     };
-    console.log("da");
     getTasks();
   }, []);
 
