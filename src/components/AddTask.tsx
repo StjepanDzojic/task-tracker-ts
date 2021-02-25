@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AddTaskProps } from "../Models/Interfaces/AddTaskProps";
 
 const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
@@ -9,21 +9,21 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
   const [errorDay, setErrorDay] = useState<string | undefined>(undefined);
   const [errorLength, setErrorLength] = useState<string | undefined>(undefined);
 
-  useEffect(() => {
-    setErrorText(undefined);
+  const onClickText = () => {
     setErrorLength(undefined);
-  }, [text]);
+    setErrorText(undefined);
+  };
 
-  useEffect(() => {
+  const onClickDay = () => {
     setErrorDay(undefined);
-  }, [day]);
+  };
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!text) {
       setErrorText("Task can't be empty");
-    } else if (text.length < 10) {
+    } else if (text.length < 5) {
       setErrorLength("Task must contain 10 characters!");
     }
 
@@ -51,6 +51,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
           placeholder="Add Task"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          onClick={onClickText}
         />
         <small>{errorText}</small>
         <small>{errorLength} </small>
@@ -62,6 +63,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAdd }) => {
           placeholder="Add Day"
           value={day}
           onChange={(e) => setDay(e.target.value)}
+          onClick={onClickDay}
         />
         <small>{errorDay}</small>
       </div>
